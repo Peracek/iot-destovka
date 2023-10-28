@@ -70,21 +70,14 @@ void loop()
   // Read the signal from the sensor
   long duration = pulseIn(ECHO_PIN, HIGH, 25000); // 25ms timeout
 
-  if (duration == 0)
-  {
-    Serial.println("Timeout occurred. No reflection detected.");
-  }
-  else
-  {
-    // Calculate the distance (using speed of sound = 34300 cm/s)
-    distance = (duration / 2.0) * 0.0343;
+  // Calculate the distance (using speed of sound = 34300 cm/s)
+  distance = (duration / 2.0) * 0.0343;
 
-    displayTextOnOLED();
-    connectToWiFi();
-    MDNS.update();
+  displayTextOnOLED();
+  connectToWiFi();
+  MDNS.update();
 
-    server.handleClient();
-  }
+  server.handleClient();
 
   delay(500); // Wait half a second before the next loop
 }
@@ -103,7 +96,15 @@ void connectToWiFi()
 
 void displayTextOnOLED()
 {
-  String displayText = "Distance: " + String(distance) + " cm\n";
+  String displayText = "Dist: ";
+  if (distance > 25 && distance < 300)
+  {
+    displayText += String(distance) + " cm\n";
+  }
+  else
+  {
+    displayText += "Out of range\n";
+  }
   displayText += "Wi-Fi: " + wifiStatusString() + "\n";
   displayText += "Signal: " + wifiSignalStrength() + "\n";
 
@@ -123,14 +124,8 @@ String wifiStatusString()
     return "Idle";
   case WL_CONNECTED:
     return "Connected";
-  case WL_CONNECT_FAILED:
-    return "Connect Failed";
-  case WL_CONNECTION_LOST:
-    return "Connection Lost";
-  case WL_DISCONNECTED:
-    return "Disconnected";
   default:
-    return "Unknown";
+    return "Connecting...";
   }
 }
 
