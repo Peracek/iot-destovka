@@ -1,11 +1,3 @@
-# iot-destovka
-ESP8266 project for measuring water level in tank
-
-Code for ESP8266 to calculate water level in a rainwater tank.
-Water level is measured using JSN-SR04T sensor in the tank.
-The level is shown on an onboard OLED display.
-The level is also provided for a remote client over wifi using GET request.
-
 # ESP8266 Rainwater tank measurement project
 
 This project uses an ESP8266 microcontroller to measure water level with an ultrasonic sensor and display the result on an OLED display. It also provides a GET endpoint to retrieve this information over Wi-Fi.
