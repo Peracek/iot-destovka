@@ -41,12 +41,12 @@ void setup()
   pinMode(ECHO_PIN, INPUT);
 
   WiFi.mode(WIFI_STA);
-  // configure mDNS to it's accessible at http://esp8266.local
-  MDNS.begin("esp8266");
+  // configure mDNS to it's accessible at http://destovka.local
+  MDNS.begin("destovka");
   connectToWiFi();
 
   // Create a route to handle incoming GET requests
-  server.on("/get_distance", HTTP_GET, []()
+  server.on("/get_level", HTTP_GET, []()
             {
     // Send the response with measured distance only
     String response = "Distance: " + String(distance) + " cm";
