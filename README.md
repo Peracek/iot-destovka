@@ -14,7 +14,7 @@ This project uses an ESP8266 microcontroller to measure water level with an ultr
 
 - ESP8266 microcontroller (NodeMCU)
 - Ultrasonic sensor (JSN-SR04T)
-- OLED display (I2C interface)
+- OLED display (0.91" 128x32, I2C interface)
 
 ## Wiring Diagram
 
@@ -27,6 +27,10 @@ This project uses an ESP8266 microcontroller to measure water level with an ultr
   - SCL Pin: D2
   
 - Power source for ESP8266
+
+## Before compilation
+
+The code uses `arduino_secrets.h` file to store Wi-Fi SSID and password. Use `arduino_secrets.h.example` template to create the file with your own SSID and password.
 
 ## Usage
 
